@@ -1,103 +1,32 @@
 # Enhancing Central Field Visual Assessment Test
 
-## 🚀 Project Overview
+## 📊 What This Project Does
 
-This project focuses on enhancing the precision of the **Central Field Visual Assessment Test** using advanced **Machine Learning**, **Eye-Gaze Tracking**, **Signal Processing**, and **Real-Time Data Analysis**. It aims to automate vision excellence recognition for **pre-verbal** and **mentally challenged individuals**.
+This project aims to **enhance the precision of Central Field Visual Assessment Tests** for individuals who are pre-verbal or mentally challenged. It uses advanced technologies such as **eye-gaze tracking**, **signal processing**, and **machine learning models** to automate the process of assessing visual field performance.
 
-## 🎯 Key Features
+### 🎯 Key Functions:
 
-- **Real-Time Gaze Tracking**: Eye movement tracking using facial landmark detection.
-- **ML-Based Vision Assessment**: Ensemble models for accurate visual field prediction.
-- **Signal Processing**: Advanced feature extraction (FFT, jerk, gaze ratio, etc.).
-- **Model Inference API**: Integrated with Flask and Streamlit for easy deployment.
-- **Data Visualization**: Real-time analysis of gaze patterns and model outputs.
+- **Automated Vision Assessment:** Analyzes eye movement patterns to detect visual field deficiencies without the need for verbal responses.
+- **Real-Time Gaze Tracking:** Tracks eye-gaze direction, blink rates, and fixation points to understand visual attention.
+- **Data-Driven Insights:** Processes large datasets from gaze tracking to identify visual impairments with high accuracy.
+- **Intelligent Predictions:** Utilizes ensemble machine learning models to provide accurate vision assessment outcomes.
+- **Fixation and Saccade Analysis:** Differentiates between stable fixations and rapid eye movements (saccades) to enhance diagnosis precision.
+- **Continuous Monitoring:** Offers capabilities for real-time monitoring, enabling early detection of potential visual disorders.
 
-## 🧠 Technologies Used
+### 🌍 Impact of the Project:
 
-- **Frontend:** Streamlit
-- **Backend:** Flask API
-- **ML Libraries:** scikit-learn, XGBoost, LightGBM
-- **Computer Vision:** OpenCV, Dlib, Mediapipe
-- **Data Handling:** Pandas, NumPy, SciPy
-- **Deployment:** Docker (optional), Gunicorn
+- **Empowering Non-Verbal Individuals:** Provides an effective way to assess vision for individuals who cannot communicate verbally, such as infants or those with cognitive impairments.
+- **Early Detection of Vision Issues:** Facilitates early intervention by identifying visual problems before they become severe.
+- **Reducing Human Error:** Automates the assessment process, reducing the chances of subjective errors from manual observations.
+- **Scalable Assessments:** Can be used in clinical settings, research environments, or even integrated into wearable health devices for continuous monitoring.
 
-## ⚡ Installation
+### 🔬 Use Cases:
 
-```bash
-git clone https://github.com/Lig17/Enhancing-Central-Field-Visual-Assessment-Test-for-Pre-Verbal-and-Mentally-Challenged.git
-cd Enhancing-Central-Field-Visual-Assessment-Test-for-Pre-Verbal-and-Mentally-Challenged
-pip install -r requirements.txt
-```
-
-## 🚀 Run the Application
-
-### 1️⃣ **Run Gaze Tracking & ML Models**
-
-```bash
-streamlit run host.py
-```
-
-### 2️⃣ **Run Flask API for ML Inference**
-
-```bash
-python ml/api.py
-```
-
-## 📊 Gaze Tracking Demo
-
-1. Go to the **Gaze Tracker** tab in Streamlit.
-2. Click **Start Gaze Tracking** to activate the webcam.
-3. Eye Aspect Ratio (EAR) and Gaze Ratio will be displayed in real-time.
-4. Click **Analyze Gaze Data** to get ML model predictions.
-
-## 📦 Project Structure
-
-```
-/CFDVisual
-├── ml/
-│   ├── data_preprocessing.py
-│   ├── feature_engineering.py
-│   ├── model_training.py
-│   ├── ensemble_models.py
-│   ├── model_evaluation.py
-│   ├── model_inference.py
-│   ├── gaze_tracking_utils.py
-│   └── api_integration.py
-├── streamlit_app.py
-├── requirements.txt
-└── README.md
-```
-
-## 🤖 ML Models Included
-
-- **Random Forest Classifier**
-- **Gradient Boosting Classifier**
-- **XGBoost & LightGBM**
-- **Stacking and Voting Ensembles**
-- **Bagging Classifier**
-
-## ✅ Sample Commands
-
-### Run Unit Tests
-```bash
-pytest
-```
-
-### Build Docker Image (Optional)
-```bash
-docker build -t cfd-visual-app .
-docker run -p 8501:8501 cfd-visual-app
-```
-
-## 📚 References
-- [Dlib Documentation](http://dlib.net/)
-- [Scikit-learn Documentation](https://scikit-learn.org/)
-- [OpenCV Documentation](https://opencv.org/)
-
-## 🤝 Contributing
-
-Contributions are welcome! Please fork this repository, make your changes, and submit a pull request.
+- Vision screening in **neonatal care units**.
+- Assessment of **cognitive and developmental disorders**.
+- Enhancing **neurological research** related to eye-tracking and brain function.
+- Assisting **ophthalmologists** in diagnosing complex visual field defects.
 
 ---
 
-**© 2024 - Lig17 | Enhancing Vision Assessment for Pre-Verbal and Mentally Challenged Individuals**
+**© 2024 - Enhancing Vision Assessment for Pre-Verbal and Mentally Challenged Individuals**
