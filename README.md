@@ -34,13 +34,13 @@ pip install -r requirements.txt
 ### 1️⃣ **Run Gaze Tracking & ML Models**
 
 ```bash
-streamlit run streamlit_app.py
+streamlit run host.py
 ```
 
 ### 2️⃣ **Run Flask API for ML Inference**
 
 ```bash
-python ml/api_integration.py
+python ml/api.py
 ```
 
 ## 📊 Gaze Tracking Demo
