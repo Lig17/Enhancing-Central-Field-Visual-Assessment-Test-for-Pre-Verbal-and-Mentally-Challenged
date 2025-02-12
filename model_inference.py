@@ -1,33 +1,74 @@
 import joblib
 import numpy as np
 import pandas as pd
+import logging
+import os
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
+# Cache for loaded models to avoid redundant loading
+model_cache = {}
 
 def load_model(model_path):
-    model = joblib.load(model_path)
-    return model
+    """Load and cache a machine learning model."""
+    if model_path in model_cache:
+        return model_cache[model_path]
+
+    if not os.path.exists(model_path):
+        logging.error(f"Model file not found: {model_path}")
+        return None
+
+    try:
+        model = joblib.load(model_path)
+        model_cache[model_path] = model
+        logging.info(f"Loaded model from {model_path}")
+        return model
+    except Exception as e:
+        logging.error(f"Error loading model {model_path}: {e}")
+        return None
 
 def preprocess_input(input_data):
+    """Convert input data to the required format."""
     if isinstance(input_data, list):
         input_data = np.array(input_data).reshape(1, -1)
     elif isinstance(input_data, pd.DataFrame):
         input_data = input_data.values
+    elif isinstance(input_data, np.ndarray):
+        if input_data.ndim == 1:
+            input_data = input_data.reshape(1, -1)
+    else:
+        logging.error("Invalid input data format. Must be list, NumPy array, or DataFrame.")
+        raise ValueError("Input data must be a list, NumPy array, or Pandas DataFrame.")
+
     return input_data
 
 def make_prediction(model, input_data):
-    processed_data = preprocess_input(input_data)
-    prediction = model.predict(processed_data)
-    probability = model.predict_proba(processed_data) if hasattr(model, 'predict_proba') else None
-    return prediction, probability
+    """Make a prediction using the given model."""
+    try:
+        processed_data = preprocess_input(input_data)
+        prediction = model.predict(processed_data)
+        probability = model.predict_proba(processed_data) if hasattr(model, 'predict_proba') else None
+
+        return {
+            'prediction': prediction.tolist(),
+            'probability': probability.tolist() if probability is not None else "N/A"
+        }
+    except Exception as e:
+        logging.error(f"Prediction failed: {e}")
+        return {"prediction": None, "probability": None}
 
 def batch_inference(models, input_data):
+    """Run inference across multiple models."""
     results = {}
+
     for model_path in models:
         model = load_model(model_path)
-        prediction, probability = make_prediction(model, input_data)
-        results[model_path] = {
-            'prediction': prediction.tolist(),
-            'probability': probability.tolist() if probability is not None else 'N/A'
-        }
+        if model is not None:
+            results[model_path] = make_prediction(model, input_data)
+        else:
+            results[model_path] = {"error": "Model could not be loaded"}
+
     return results
 
 if __name__ == "__main__":
@@ -47,5 +88,5 @@ if __name__ == "__main__":
 
     for model, result in inference_results.items():
         print(f"Model: {model}")
-        print(f"Prediction: {result['prediction']}")
-        print(f"Probability: {result['probability']}\n")
+        print(f"Prediction: {result.get('prediction', 'N/A')}")
+        print(f"Probability: {result.get('probability', 'N/A')}\n")
